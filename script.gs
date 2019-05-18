@@ -2,11 +2,11 @@ function doPost(e) {
   if (e == null || e.postData == null || e.postData.contents == null) {
     return;
   }
-  var requestJSON = e.postData.contents;
-  var requestObj = JSON.parse(requestJSON);
+  var jsonData = e.postData.contents;
+  var data = JSON.parse(jsonData);
 
-  var ss = SpreadsheetApp.getActive()
-  var sheet = ss.getActiveSheet();
+  var gss = SpreadsheetApp.getActive()
+  var sheet = gss.getActiveSheet();
 
   var colNum = 5;
   var headers = sheet.getRange(150,1,1,colNum).getValues()[0];
@@ -20,7 +20,7 @@ function doPost(e) {
         val = new Date();
         break;
       default:
-        val = requestObj[header];
+        val = data[header];
         break;
     }
     values.push(val);
